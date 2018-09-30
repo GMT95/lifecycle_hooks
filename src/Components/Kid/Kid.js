@@ -4,7 +4,7 @@ export default class Kid extends React.Component {
     super(props);
     this.state = {
       emotion: 'nervous', danceSteps: [], currentStepIndex: 0,
-      startedPerforming: false
+      startedPerforming: false, showJudges: false
     };
   }
 
@@ -16,10 +16,17 @@ export default class Kid extends React.Component {
      this.setState({danceSteps: ['step1','step2']})
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    console.log('Component Did Update Prev State',prevState);
-    console.log('Component Did Update Current State',this.state);
-  }
+  //Task 7
+  // componentDidUpdate() {
+  //   // console.log('Component Did Update Prev State',prevState);
+  //   // console.log('Component Did Update Current State',this.state);
+  //   const { startedPerforming } = this.props;
+  //   console.log('Kid ComponentDidUpdate',startedPerforming)
+  //   if(startedPerforming) {
+  //     this.qualified.bind(this);
+  //   }
+  // }
+  //Task 7
 
   static getDerivedStateFromProps(props,state) {
     // const oldSteps = state.danceSteps;
@@ -30,9 +37,14 @@ export default class Kid extends React.Component {
     const danceStepsSpread =  [...state.danceSteps, ...props.furtherSteps]
     return {
       danceSteps: state.danceSteps.length < 5 ? danceStepsSpread : state.danceSteps,
-      startedPerforming: state.danceSteps.length >= 5,
+      startedPerforming: state.danceSteps.length >= 5 ? props.getStars ? false : true : false,
       emotion: props.emotion === 'happy' ? props.emotion : 'nervous' 
     }
+  }
+
+  componentWillUnmount() {
+    const {showJudges} = this.state
+    this.props.goodByeJudges(showJudges)
   }
 
   render() {

@@ -6,7 +6,10 @@ import './App.css';
 
 class App extends Component {
 	constructor() {
-		super()
+		super();
+
+		this.state = {showKidComponent : true, showJudges: true}
+
 		this.updateSteps = this.updateSteps.bind(this)
 	}
 
@@ -22,27 +25,42 @@ class App extends Component {
 	//Task4
 
 	//Task5
-updateEmotions() {
-	this.setState({emotion: 'happy'})
-	console.log('Update Emotions:',this.state.emotion)
-}
+	updateEmotions() {
+		this.setState({emotion: 'happy'})
+		console.log('Update Emotions:',this.state.emotion)
+	}
 	//Task5
 
+	//Task7
+	childQualifiedByJudges(stars) {
+		this.setState({stars})
+	} 
+	//Task7
+
+	goodByeJudges(showJudges) {
+		this.setState({showJudges})
+	}
+
   	render() {
-		const {volume,furtherSteps} = this.state;
+		const {volume,furtherSteps,stars,showKidComponent,showJudges} = this.state;
 		console.log("Volume___",this.state.volume)
 		console.log("Further Steps___",this.state.furtherSteps) 
 	 
 		return (
 			<div>
-			  <h1>Kid</h1><br/>	 	  	
-			  <Kid dressColor="green" furtherSteps={furtherSteps} emotion={this.state.emotion}/>
+			  {showKidComponent && <h1>Kid</h1>}
+			  <br/>	 	  	
+			  {showKidComponent && <Kid dressColor="green" furtherSteps={furtherSteps} emotion={this.state.emotion} getStars={this.state.stars} goodByeJudges={this.goodByeJudges.bind(this)}/>}
+			  {showKidComponent && stars && <button onClick={() => this.setState({showKidComponent: false})}>Ask Kid to Leave</button>}
 			  <hr/>
 			  <h1>Teacher</h1><br/>
 			  <Teacher updateSteps={this.updateSteps}/>
 			  <hr/>
+			  {showJudges && 
+			  <div>
 			  <h1>Judges</h1><br/>
-			  <Judges updateEmotions={this.updateEmotions.bind(this)}/>
+			  <Judges updateEmotions={this.updateEmotions.bind(this)} childQualifiedByJudges={this.childQualifiedByJudges.bind(this)} />
+			  </div>}	
 			</div>
 		  );
 	}

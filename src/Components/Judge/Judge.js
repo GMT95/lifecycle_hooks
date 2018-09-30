@@ -12,12 +12,16 @@ export default class Judge extends React.Component {
     this.props.updateEmotions();
   }
   provideStars() {
-    //const { stars } = this.state;
+    const { stars } = this.state;
+    if(stars === 4) {
+      this.props.childQualifiedByJudges(stars + 1)
+    }
     this.setState({ stars: ++this.state.stars })
+    
   }
 
   shouldComponentUpdate(nextProps,nextState) {
-    return nextState.stars <= 5
+    return nextState.stars <= 5 
   }
 
   render() {
