@@ -24,6 +24,11 @@ nervous as well.*
 9. On unmounting the Kid, unmount the Judges component as well.
 **Hint: Use componentWillUnmount() in 'Kid.js'**
 
+## Answer: 
+
+* ***![this repo](https://github.com/GMT95/lifecycle_hooks)***
+* ***![Live Preview](https://gmt95.github.io/lifecycle_hooks/)***
+
 ***
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
