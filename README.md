@@ -26,8 +26,9 @@ nervous as well.*
 
 ## Answer: 
 
-* ***![this repo](https://github.com/GMT95/lifecycle_hooks)***
-* ***![Live Preview](https://gmt95.github.io/lifecycle_hooks/)***
+* ***[this repo](https://github.com/GMT95/lifecycle_hooks)***
+* ***[Live Preview](https://gmt95.github.io/lifecycle_hooks/)***
+
 
 ***
 
